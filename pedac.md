@@ -24,9 +24,10 @@ display winner
 
 ### RULES
 
-rock > scissors
-paper > rock
-scissors > paper
+1. rock > scissors
+2. paper > rock
+3. scissors > paper
+4. tie if both players choose same
 
 ### MENTAL MODEL
 Ask user to input rock, paper, or scissors. Then computer selects random choice among rock, paper, or scissors. Compare user input to computer choice and select winner based on RPS rules. Ask user if they'd like to continue game.
