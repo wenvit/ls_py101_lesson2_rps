@@ -33,21 +33,21 @@ Ask user to input rock, paper, or scissors. Then computer selects random choice 
 
 ### TEST CASES 
 
-Handle situation if user & computer select same choice -- do over
+Handle situation if user & computer select same choice -- tie
 
 ### DATA STRUCTURE
 
 strings, lists for choices
 
 ### ALGORITHM
-1. prompt function
-2. ask user to input choice
-3. while choice not in ['rock', 'paper', 'scissors']
-   ask user for valid input
-4. use random.choice function for the computer's choice among
-   ['rock', 'paper', 'scissors']
-5. user a series of if/elif statements to compare user & computer 
-   choices to determine & print winner, if choices are equal, 
-   continue next iteration of while loop
+1. define prompt function
+2. define function that chooses winner - use a series of 
+if/elif statements to compare choices & determine winner, 
+else tie if choices are same
+3. ask user to input choice
+4. while choice not in ['rock', 'paper', 'scissors']
+ask user for valid input
+5. use random.choice function for the computer's choice among
+['rock', 'paper', 'scissors']
 6. ask user if she wants to play again, if no break
 
