@@ -9,7 +9,7 @@ def prompt(message):
 
 def display_winner(player, computer):
     prompt(f'You chose {player_choice}. '
-           'The computer chooses {computer_choice}.')
+           f'The computer chose {computer_choice}.')
 
     if ((player == 'rock' and computer == 'scissors') or
        (player == 'paper' and computer == 'rock') or
