@@ -14,6 +14,7 @@ The winner is displayed.
 
 ### Bonus Features
 1. Rock-Paper-Scissors-Spock-Lizard
+2. Shorten input so player doesn't have to type the whole word for their choise
 
 ## PEDAC
 
@@ -38,6 +39,12 @@ display winner
 9. paper > spock
 10. spock > rock
 11. tie if both players choose same
+12. shortened inputs:
+* 'r' for 'rock'
+* 'p' for 'paper'
+* 'sc' for 'scissors'
+* 'sp' for 'spock'
+* 'l' for 'lizard'
 
 ### MENTAL MODEL
 Ask user to input rock, paper, scissors, spock, lizard. Then computer selects random choice among rock, paper, scissors, spock, lizard. Compare user input to computer choice and select winner based on RPS rules. Ask user if they'd like to continue game.
@@ -48,13 +55,13 @@ Handle situation if user & computer select same choice -- tie
 
 ### DATA STRUCTURE
 
-strings, lists for choices
+strings, dictionary for choices
 
 ### ALGORITHM
-1. initialize constant VALID_CHOICES to a list containing rock, paper, scissors, spock, lizard
+1. Initialize constant VALID_CHOICES to a dictionary mapping shortened inputs to rock, paper, scissors, spock, lizard. Dictionary keys are 'r', 'p', 'sc', 'sp', 'l' with corresponding values 'rock', 'paper', 'scissors', 'spock', 'lizard'
 3. define prompt function
 2. define function that chooses winner - use a series of 
-if/elif statements to compare choices & determine winner, 
+if/elif statements to compare choices using VALID_CHOICES keys & determine winner, 
 else tie if choices are same
 3. ask user to input choice
 4. while choice not in VALID_CHOICES
