@@ -11,7 +11,7 @@ Our version of the game lets the user play against the computer. The game flow s
 The user makes a choice.
 The computer makes a choice.
 The winner is displayed.
----------
+
 ### Bonus Features
 1. Rock-Paper-Scissors-Spock-Lizard
 
