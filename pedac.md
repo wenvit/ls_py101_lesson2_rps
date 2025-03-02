@@ -14,7 +14,8 @@ The winner is displayed.
 
 ### Bonus Features
 1. Rock-Paper-Scissors-Spock-Lizard
-2. Shorten input so player doesn't have to type the whole word for their choise
+2. Shorten input so player doesn't have to type the whole word for their choice
+3. Keep score of the player's and computer's wins. When either the player or computer reaches three wins, the match is over, and the winning player becomes the grand winner.
 
 ## PEDAC
 
@@ -47,7 +48,7 @@ display winner
 * 'l' for 'lizard'
 
 ### MENTAL MODEL
-Ask user to input rock, paper, scissors, spock, lizard. Then computer selects random choice among rock, paper, scissors, spock, lizard. Compare user input to computer choice and select winner based on RPS rules. Ask user if they'd like to continue game.
+Ask user to input rock, paper, scissors, spock, lizard. Then computer selects random choice among rock, paper, scissors, spock, lizard. Compare user input to computer choice and select winner based on RPS rules. Keep track of number of wins for both player and computer. Game continues playing until either player or computer reaches 3 wins, then announce grand winner.  
 
 ### TEST CASES 
 
@@ -55,18 +56,21 @@ Handle situation if user & computer select same choice -- tie
 
 ### DATA STRUCTURE
 
-strings, dictionary for choices
+strings, dictionary for choices, list to track winners
 
 ### ALGORITHM
 1. Initialize constant VALID_CHOICES to a dictionary mapping shortened inputs to rock, paper, scissors, spock, lizard. Dictionary keys are 'r', 'p', 'sc', 'sp', 'l' with corresponding values 'rock', 'paper', 'scissors', 'spock', 'lizard'
-3. define prompt function
-2. define function that chooses winner - use a series of 
-if/elif statements to compare choices using VALID_CHOICES keys & determine winner, 
-else tie if choices are same
-3. ask user to input choice
-4. while choice not in VALID_CHOICES
-ask user for valid input
-5. use random.choice function for the computer's choice among
-VALID_CHOICES
-6. ask user to play again, if no break
+2. Define `prompt` function that prints f-string concatenating message w/prompt
+3. Define `who_wins_game` function that chooses winner, two parameters with player choice & computer choice, 
+use a series of if/elif statements to compare choices using VALID_CHOICES keys & determine winner, 
+else tie if choices are same. Instead of printing winner, return winner. 
+4. Define `match_wins` function to count computer & player wins, with single parameter of list of winners. Use `count` method to count number of computer and player wins. Returns tuple of who has most wins (player or computer) and their number of wins.
+5. Enclose following code in while loop: `while match_winner <= 3` 
+5. Ask user to input choice
+6. While choice not in VALID_CHOICES, ask user for valid input
+7. Use random.choice function for the computer's choice among VALID_CHOICES
+8. Invoke `who_wins_game` with arguments of player choice & computer choice. Variable `game_winner` references  return value.
+9. Invoke `match_wins` passing `game_winner` as argument. Variable `match_winner` references tuple with who has max wins (player/computer) and number of wins.
+10. Print game winner & match winners.
+11. When `match_winner` equals 3, break out of loop and congratulate winner of match
 
