@@ -25,7 +25,9 @@ computer input: also choice of rock, paper, scissors, spock, lizard
 
 ### OUTPUTS
 
-display winner
+display each game winner
+display # games won by player and computer
+display match winner (best of 5)
 
 ### RULES
 
@@ -53,24 +55,25 @@ Ask user to input rock, paper, scissors, spock, lizard. Then computer selects ra
 ### TEST CASES 
 
 Handle situation if user & computer select same choice -- tie
+No points for either player or computer for a tie
 
 ### DATA STRUCTURE
 
-strings, dictionary for choices, list to track winners
+strings, dictionary for choices
 
 ### ALGORITHM
 1. Initialize constant VALID_CHOICES to a dictionary mapping shortened inputs to rock, paper, scissors, spock, lizard. Dictionary keys are 'r', 'p', 'sc', 'sp', 'l' with corresponding values 'rock', 'paper', 'scissors', 'spock', 'lizard'
 2. Define `prompt` function that prints f-string concatenating message w/prompt
 3. Define `who_wins_game` function that chooses winner, two parameters with player choice & computer choice, 
 use a series of if/elif statements to compare choices using VALID_CHOICES keys & determine winner, 
-else tie if choices are same. Instead of printing winner, return winner. 
-4. Define `match_wins` function to count computer & player wins, with single parameter of list of winners. Use `count` method to count number of computer and player wins. Returns tuple of who has most wins (player or computer) and their number of wins.
-5. Enclose following code in while loop: `while match_winner <= 3` 
-5. Ask user to input choice
-6. While choice not in VALID_CHOICES, ask user for valid input
-7. Use random.choice function for the computer's choice among VALID_CHOICES
-8. Invoke `who_wins_game` with arguments of player choice & computer choice. Variable `game_winner` references  return value if not 'tie'.
-9. Invoke `match_wins` passing `game_winner` as argument. Variable `match_winner` references tuple with who has max wins (player/computer) and number of wins.
-10. Print game winner & match winners.
-11. When `match_winner` equals 3, break out of loop and congratulate winner of match
+else tie if choices are same. Instead of printing winner, return winner or tie. 
+4. Set `player_wins` and `computer_wins` to 0. These variables will be counters to keep track of # games won.
+5. Enclose following code in `while True` loop: 
+6. Ask user to input choice. Variable `player_choice` references input value.
+7. While choice not in VALID_CHOICES, ask user for valid input.
+8. Use random.choice function for the computer's choice among VALID_CHOICES. Variable `computer_choice` references return value.
+9. Invoke `who_wins_game` with arguments of `player_choice` & `computer_choice`. Variable `game_winner` references return value if return value != 'tie'.
+10. If `game_winner == 'player'` increment `player_wins` by 1, print you win. If `game_winner == 'computer'` increment `computer_wins` by 1 and print computer wins. Else print tie, neither game counter variable is incremented.
+11. Print match score with f-string argument interpolating `player_wins` and `computer_wins`
+12. If `player_wins == 3` print you win the match, break. Elif `computer_wins == 3` print computer wins, break
 
