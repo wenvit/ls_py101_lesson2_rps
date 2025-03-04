@@ -44,12 +44,10 @@ def who_wins_game(player, computer):
     else:
         return 'tie'
 
-def match_score(winners):
-    return winners.count('player'), winners.count('computer')
-
 prompt("Let's play Rock-Paper-Scissors-Spock-Lizard!\n")
 
-game_wins = []
+player_wins = 0
+computer_wins = 0
 
 while True:
     prompt("Enter one of the following: ")
@@ -66,15 +64,14 @@ while True:
     game_winner = who_wins_game(player_choice, computer_choice)
 
     if game_winner == 'player':
+        player_wins +=1
         prompt('You win!')
     elif game_winner == 'computer':
+        computer_wins += 1
         prompt('Computer wins!')
     else:
         prompt("It's a tie!")
 
-    game_wins.append(game_winner)
-
-    player_wins, computer_wins = match_score(game_wins)
     prompt(f'SCORE: You - {player_wins}. Computer - {computer_wins}.')
 
     if player_wins == 3:
