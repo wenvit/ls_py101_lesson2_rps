@@ -69,7 +69,7 @@ else tie if choices are same. Instead of printing winner, return winner.
 5. Ask user to input choice
 6. While choice not in VALID_CHOICES, ask user for valid input
 7. Use random.choice function for the computer's choice among VALID_CHOICES
-8. Invoke `who_wins_game` with arguments of player choice & computer choice. Variable `game_winner` references  return value.
+8. Invoke `who_wins_game` with arguments of player choice & computer choice. Variable `game_winner` references  return value if not 'tie'.
 9. Invoke `match_wins` passing `game_winner` as argument. Variable `match_winner` references tuple with who has max wins (player/computer) and number of wins.
 10. Print game winner & match winners.
 11. When `match_winner` equals 3, break out of loop and congratulate winner of match
