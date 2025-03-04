@@ -1,6 +1,7 @@
 # Add bonus features:
 #    1. rock-paper-scissors-spock-lizard
 #    2. shorten player input
+#    3. best of 5
 
 import random
 
@@ -15,7 +16,7 @@ VALID_CHOICES = {
 def prompt(message):
     print(f'==> {message}')
 
-def display_winner(player, computer):
+def who_wins_game(player, computer):
     prompt(f'You chose {VALID_CHOICES[player]}. '
            f'The computer chose {VALID_CHOICES[computer]}.')
     if ((player == 'r' and computer == 'sc') or
@@ -28,7 +29,7 @@ def display_winner(player, computer):
        (player == 'l' and computer == 'p') or
        (player == 'p' and computer == 'sp') or
        (player == 'sp' and computer == 'r')):
-        prompt('You win!')
+        return 'player'
     elif ((computer == 'r' and player == 'sc') or
        (computer == 'p' and player == 'r') or
        (computer == 'sc' and player == 'p') or
@@ -39,17 +40,21 @@ def display_winner(player, computer):
        (computer == 'l' and player == 'p') or
        (computer == 'p' and player == 'sp') or
        (computer == 'sp' and player == 'r')):
-        prompt('Computer wins!')
+        return 'computer'
     else:
-        prompt("It's a tie!")
+        return 'tie'
 
-prompt("Let's play Rock-Paper-Scissors-Spock-Lizard!")
+def match_score(winners):
+    return winners.count('player'), winners.count('computer')
+
+prompt("Let's play Rock-Paper-Scissors-Spock-Lizard!\n")
+
+game_wins = []
 
 while True:
-
-    prompt(f"Enter one of the following: ")
+    prompt("Enter one of the following: ")
     for key, value in VALID_CHOICES.items():
-        prompt(f"  '{key}' for {value}")
+        print(f"     '{key}' to select {value}")
     player_choice = input()
 
     while player_choice not in VALID_CHOICES:
@@ -58,16 +63,23 @@ while True:
 
     computer_choice = random.choice(list(VALID_CHOICES.keys()))
 
-    display_winner(player_choice, computer_choice)
+    game_winner = who_wins_game(player_choice, computer_choice)
 
-    while True:
-        prompt("Do you want to play again (y/n)?")
-        play_again = input().lower()
+    if game_winner == 'player':
+        prompt('You win!')
+    elif game_winner == 'computer':
+        prompt('Computer wins!')
+    else:
+        prompt("It's a tie!")
 
-        if play_again.startswith('n') or play_again.startswith('y'):
-            break
-        else:
-            prompt("That's not a valid choice. Enter 'y' or 'n'")
+    game_wins.append(game_winner)
 
-    if play_again[0] == 'n':
+    player_wins, computer_wins = match_score(game_wins)
+    prompt(f'SCORE: You - {player_wins}. Computer - {computer_wins}.')
+
+    if player_wins == 3:
+        prompt('You win the match!')
+        break
+    elif computer_wins == 3:
+        prompt('Computer wins the match!')
         break
