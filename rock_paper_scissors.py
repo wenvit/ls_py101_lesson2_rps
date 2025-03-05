@@ -16,38 +16,37 @@ VALID_CHOICES = {
 def prompt(message):
     print(f'==> {message}')
 
-def who_wins_game(player, computer):
-    prompt(f'You chose {VALID_CHOICES[player]}. '
-           f'The computer chose {VALID_CHOICES[computer]}.')
-    if ((player == 'r' and computer == 'sc') or
-       (player == 'p' and computer == 'r') or
-       (player == 'sc' and computer == 'p') or
-       (player == 'r' and computer == 'l') or
-       (player == 'l' and computer == 'sp') or
-       (player == 'sp' and computer == 'sc') or
-       (player == 'sc' and computer == 'l') or
-       (player == 'l' and computer == 'p') or
-       (player == 'p' and computer == 'sp') or
-       (player == 'sp' and computer == 'r')):
+def who_wins(player, computer):
+    if (
+        (player == 'r' and computer == 'sc') or
+        (player == 'p' and computer == 'r') or
+        (player == 'sc' and computer == 'p') or
+        (player == 'r' and computer == 'l') or
+        (player == 'l' and computer == 'sp') or
+        (player == 'sp' and computer == 'sc') or
+        (player == 'sc' and computer == 'l') or
+        (player == 'l' and computer == 'p') or
+        (player == 'p' and computer == 'sp') or
+        (player == 'sp' and computer == 'r')
+       ):
         return 'player'
-    elif ((computer == 'r' and player == 'sc') or
-       (computer == 'p' and player == 'r') or
-       (computer == 'sc' and player == 'p') or
-       (computer == 'r' and player == 'l') or
-       (computer == 'l' and player == 'sp') or
-       (computer == 'sp' and player == 'sc') or
-       (computer == 'sc' and player == 'l') or
-       (computer == 'l' and player == 'p') or
-       (computer == 'p' and player == 'sp') or
-       (computer == 'sp' and player == 'r')):
-        return 'computer'
-    else:
+    elif player == computer:
         return 'tie'
+    else:
+        return 'computer'
+
+def display_winner(winner):
+    if winner == 'player':
+        prompt('You win!')
+    elif winner == 'computer':
+        prompt('Computer wins!')
+    else:
+        prompt("It's a tie!")
 
 prompt("Let's play Rock-Paper-Scissors-Spock-Lizard!\n")
 
-player_wins = 0
-computer_wins = 0
+player_score = 0
+computer_score = 0
 
 while True:
     prompt("Enter one of the following: ")
@@ -61,22 +60,22 @@ while True:
 
     computer_choice = random.choice(list(VALID_CHOICES.keys()))
 
-    game_winner = who_wins_game(player_choice, computer_choice)
+    prompt(f'You chose {VALID_CHOICES[player_choice]}. '
+           f'The computer chose {VALID_CHOICES[computer_choice]}.')
+
+    game_winner = who_wins(player_choice, computer_choice)
+    display_winner(game_winner)
 
     if game_winner == 'player':
-        player_wins +=1
-        prompt('You win!')
-    elif game_winner == 'computer':
-        computer_wins += 1
-        prompt('Computer wins!')
-    else:
-        prompt("It's a tie!")
+        player_score +=1
+    if game_winner == 'computer':
+        computer_score += 1
 
-    prompt(f'SCORE: You - {player_wins}. Computer - {computer_wins}.')
+    prompt(f'SCORE: You - {player_score}. Computer - {computer_score}.\n')
 
-    if player_wins == 3:
+    if player_score == 3:
         prompt('You win the match!')
         break
-    elif computer_wins == 3:
+    if computer_score == 3:
         prompt('Computer wins the match!')
         break

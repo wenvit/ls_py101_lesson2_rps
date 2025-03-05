@@ -64,16 +64,17 @@ strings, dictionary for choices
 ### ALGORITHM
 1. Initialize constant VALID_CHOICES to a dictionary mapping shortened inputs to rock, paper, scissors, spock, lizard. Dictionary keys are 'r', 'p', 'sc', 'sp', 'l' with corresponding values 'rock', 'paper', 'scissors', 'spock', 'lizard'
 2. Define `prompt` function that prints f-string concatenating message w/prompt
-3. Define `who_wins_game` function that chooses winner, two parameters with player choice & computer choice, 
-use a series of if/elif statements to compare choices using VALID_CHOICES keys & determine winner, 
-else tie if choices are same. Instead of printing winner, return winner or tie. 
-4. Set `player_wins` and `computer_wins` to 0. These variables will be counters to keep track of # games won.
+3. Define `who_wins` function with two parameters, `player` & `computer`.
+Use a series of if/elif statements to compare choices using VALID_CHOICES keys & return `player` if
+player wins, `tie` if `player` == `computer`, else `computer`
+4. Define `display_winner` function with parameter `winner`. Print you win if `winner == player`, computer wins if `winner == computer` else tied. 
+4. Set `player_score` and `computer_score` to 0. These variables will be counters to keep track of # games won.
 5. Enclose following code in `while True` loop: 
 6. Ask user to input choice. Variable `player_choice` references input value.
 7. While choice not in VALID_CHOICES, ask user for valid input.
 8. Use random.choice function for the computer's choice among VALID_CHOICES. Variable `computer_choice` references return value.
-9. Invoke `who_wins_game` with arguments of `player_choice` & `computer_choice`. Variable `game_winner` references return value if return value != 'tie'.
-10. If `game_winner == 'player'` increment `player_wins` by 1, print you win. If `game_winner == 'computer'` increment `computer_wins` by 1 and print computer wins. Else print tie, neither game counter variable is incremented.
+9. Invoke `who_wins` with arguments of `player_choice` & `computer_choice`. Variable `game_winner` references return value if return value != 'tie'.
+10. If `game_winner == 'player'` increment `player_wins` by 1, if `game_winner == 'computer'` increment `computer_wins` by 1.
 11. Print match score with f-string argument interpolating `player_wins` and `computer_wins`
-12. If `player_wins == 3` print you win the match, break. Elif `computer_wins == 3` print computer wins, break
+12. If `player_wins == 3` print you win the match, break. if `computer_wins == 3` print computer wins, break
 
